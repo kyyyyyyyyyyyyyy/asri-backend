@@ -1,11 +1,11 @@
 import { v2 as cloudinary } from "cloudinary";
 
-const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-const apiKey = process.env.CLOUDINARY_API_KEY;
-const apiSecret = process.env.CLOUDINARY_API_SECRET;
+const cloudUrl = process.env.CLOUDINARY_URL;
+// const apiKey = process.env.CLOUDINARY_API_KEY;
+// const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
 export function isCloudinaryConfigured() {
-  return Boolean(cloudName && apiKey && apiSecret);
+  return Boolean(cloudUrl);
 }
 
 export function configureCloudinary() {
@@ -14,10 +14,7 @@ export function configureCloudinary() {
   }
 
   cloudinary.config({
-    cloud_name: cloudName,
-    api_key: apiKey,
-    api_secret: apiSecret,
-    secure: true
+    cloudinary_url: cloudUrl,
   });
 
   return cloudinary;
