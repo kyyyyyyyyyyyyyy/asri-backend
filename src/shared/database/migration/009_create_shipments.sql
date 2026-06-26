@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS shipments (
   tracking_number VARCHAR(255) UNIQUE,
   origin_address TEXT,
   destination_address TEXT,
+  shipping_cost NUMERIC(14,2) NOT NULL DEFAULT 0
+  CHECK (shipping_cost >= 0);
+  store_id UUID REFERENCES stores(id) ON DELETE RESTRICT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
@@ -25,3 +28,4 @@ CREATE TABLE IF NOT EXISTS shipment_tracking_events (
 CREATE INDEX IF NOT EXISTS idx_shipments_order_id ON shipments(order_id);
 CREATE INDEX IF NOT EXISTS idx_shipments_driver_id ON shipments(driver_id);
 CREATE INDEX IF NOT EXISTS idx_shipment_tracking_events_shipment_id ON shipment_tracking_events(shipment_id);
+CREATE INDEX IF NOT EXISTS idx_shipments_store_id ON shipments(store_id);

@@ -7,4 +7,14 @@ export type Transaction = {
   orderId: string;
   status: TransactionStatus;
   amount: number;
+  transactionCode: string | null;
+  paymentType: string | null;
+  paymentReference: string | null;
+  gatewayTransactionId: string | null;
+  snapToken: string | null;
+  paidAt: Date | null;
+  expiredAt: Date | null;
+  transactionTime: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
 };
